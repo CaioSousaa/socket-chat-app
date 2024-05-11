@@ -15,4 +15,4 @@ const findChats = async (req, res) => {
   }
 };
 
-module.exports = findChats;
+module.exports = { findChats };

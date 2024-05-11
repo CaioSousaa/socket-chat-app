@@ -15,4 +15,4 @@ const findUsersChats = async (req, res) => {
   }
 };
 
-module.exports = findUsersChats;
+module.exports = { findUsersChats };
