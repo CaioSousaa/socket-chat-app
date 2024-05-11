@@ -3,6 +3,7 @@ const morgan = require("morgan");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const userRoutes = require("../src/routes/userRoutes");
+const chatsRoutes = require("../src/routes/chatRoutes");
 
 const app = express();
 require("dotenv").config();
@@ -11,6 +12,7 @@ app.use(express.json());
 app.use(morgan("dev"));
 app.use(cors());
 app.use("/api/users", userRoutes);
+app.use("/api/chats", chatsRoutes);
 
 mongoose.connect(
   "mongodb+srv://mongo:12345@cluster0.spphilp.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
