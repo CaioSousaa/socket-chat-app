@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import { createContext, useCallback, useState } from "react";
+import { createContext, useCallback, useEffect, useState } from "react";
 import { baseUrl, postRequest } from "../utils/service";
 
 export const AuthContext = createContext();
@@ -16,7 +16,13 @@ export const AuthContextProvider = ({ children }) => {
     password: "",
   });
 
-  console.log("registerInfo", registerInfo);
+  console.log("User", user);
+
+  useEffect(() => {
+    const user = localStorage.getItem("User");
+
+    setUser(JSON.parse(user));
+  }, []);
 
   const updateRegisterInfo = useCallback((info) => {
     setRegisterInfo(info);
@@ -44,6 +50,11 @@ export const AuthContextProvider = ({ children }) => {
     [registerInfo]
   );
 
+  const logoutUser = useCallback(() => {
+    localStorage.removeItem("User");
+    setUser(null);
+  }, []);
+
   return (
     <AuthContext.Provider
       value={{
@@ -53,6 +64,7 @@ export const AuthContextProvider = ({ children }) => {
         registerUser,
         registerError,
         isRegisterLoading,
+        logoutUser,
       }}
     >
       {children}
