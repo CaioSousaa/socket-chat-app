@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import { baseUrl, getRequest } from "../utils/service";
 
@@ -21,7 +22,7 @@ export const useFetchRecipientUser = (chat, user) => {
       setRecipientUser(response);
     };
     getUsers();
-  }, [recipientId]);
+  }, []);
 
   return { recipientUser };
 };
